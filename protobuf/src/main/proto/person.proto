@@ -1,23 +1,27 @@
 syntax = "proto3";
 
+import "google/protobuf/wrappers.proto";
+
 option java_multiple_files = true;
 option java_package = "com.mourishitz.models";
 
+
 message Address {
-  int32 postbox = 1;
-  string street = 2;
-  string city = 3;
+  int32 postbox = 1; // the number 1, 2 or 3 are not mandatory. You can define street = 59 if you want to
+  string street = 2; // attributes from 1 to 15 only takes 1 byte, use it for the main attributes!
+  string city = 3;   // Do not change once it is already in use!!!!!
 }
 
 message Car {
   string make = 1;
   string model = 2;
   int32 year = 3;
+  BodyStyle body_style = 4;
 }
 
 message Person {
   string name = 1;
-  int32 age = 2;
+  google.protobuf.Int32Value age = 2;
   Address address = 3;
   /* repeated = One to Many */
   repeated Car car = 4;
@@ -25,4 +29,11 @@ message Person {
 
 message Dealer {
   map<int32, Car> model = 1;
+}
+
+enum BodyStyle {
+  UNKNOWN = 0; // Default value
+  COUPE = 1;
+  SUV = 2;
+  SEDAN = 3;
 }

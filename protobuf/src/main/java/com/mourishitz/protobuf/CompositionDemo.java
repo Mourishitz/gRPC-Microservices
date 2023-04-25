@@ -1,5 +1,6 @@
 package com.mourishitz.protobuf;
 
+import com.google.protobuf.Int32Value;
 import com.mourishitz.models.Address;
 import com.mourishitz.models.Car;
 import com.mourishitz.models.Person;
@@ -35,7 +36,7 @@ public class CompositionDemo {
 
         Person sam = Person.newBuilder()
                 .setName("Sam")
-                .setAge(25)
+                .setAge(Int32Value.newBuilder().setValue(10).build())
                 // .addCar(accord)  We can use addCar instead of setCar
                 // .addCar(civic)  because of One to Many relation
                 .addAllCar(cars) // Or use addAllCar with an ArrayList of Car's
